@@ -26,12 +26,11 @@ export default class App extends Component {
 					<Link to='/'>MovieList</Link>
 				</div>
 				<div>
-          <Link to='/movies/:id'>Movie</Link>
-          
-				</div>
-				<div>
-					<Route path='/' exact component={MovieList} />
-					<Route path='/movies/:id' exact component={Movie} />
+          <Route path='/' 
+          exact 
+          component={MovieList} />
+          <Route path='/movies/:id'
+           render={props => <Movie {...props} />} />
 				</div>
 			</div>
 		);
