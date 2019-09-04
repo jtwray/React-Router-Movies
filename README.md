@@ -9,6 +9,8 @@ Topics:
 
 ## Instructions
 
+**NOTE ⚠️ - You will NOT need to finish this project after React Router I. Start working on it now, then you can finish it up after the next module - React Router II.**
+
 * **Fork** this repository, then clone your fork.
 * **NOTE** You have 2 servers that you will be running here so read these instructions carefully.
 * **In the root of this directory**: Run `yarn install` to download dependencies.
@@ -48,6 +50,6 @@ You will notice there is a 'Saved Movies' component that we are not currently us
 
 ### Turn your Saved Movie list into `Link`s.
 
-You will need to uncomment lines 29-39 in `Movie.js` to complete this. Your list of saved movies should be links to the movie itself. Study and understand what the `saveMovie` function is doing.
+You will need to uncomment lines 25-28 in `Movie.js` to complete this. Your list of saved movies should be links to the movie itself. Study and understand what the `saveMovie` function is doing.
 
 ### Turn your Saved Movie `Link`s into `NavLink`s.
