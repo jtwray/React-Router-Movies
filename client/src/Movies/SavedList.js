@@ -1,19 +1,17 @@
-import {Link} from 'react-router-dom'
 import React from 'react';
+import {Link} from "react-router-dom"
 
-const SavedList=props => (
+const SavedList=({list}) => (
   <div className="saved-list">
     <h3>Saved Movies:</h3>
-    {props.list&&props.list.map( movie => (
+    {list&&list.map( movie => (
       <span className="saved-movie">{movie.title}</span>
     ) )}
-    <div className="home-button">
-      <Link to="/">
-        Home
+    <Link className="home-button" to="/" >
+      Home
     </Link>
-    </div>
   </div>
 );
 
-export default SavedList;
 
+export default SavedList; 
