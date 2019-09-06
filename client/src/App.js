@@ -9,7 +9,8 @@ const App=() => {
   const [savedList, setSavedList]=useState( [] );
 
   const addToSavedList=movie => {
-    setSavedList( [...savedList, movie] );
+    ( !savedList.includes( movie ) )?
+      ( setSavedList( [...savedList, movie] )):( setSavedList( savedList ) ) ;
   };
 
   return (
@@ -17,19 +18,17 @@ const App=() => {
       <SavedList list={savedList} />
       <div>
         <Route exact path="/" component={MovieList} />
-        <Route path="/movies/:movieID"  component={Movie} />
+        <Route path="/movies/:movieID" render={( props ) => (
+          <Movie
+            {...props}
+            addToSavedList={addToSavedList}
+          />
+        )} />
       </div>
     </div>
   );
 };
 
-export default App; 
+export default App;
 
 
-{/**i had issues getting the match.params to not log undefined
-my url displayed the correct url with the number of the item
-I clicked on but in the console match.params was undefined. 
-
-<MovieDetails key={movie.id} movie={movie} />
-
-*/}
