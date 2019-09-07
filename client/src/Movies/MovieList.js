@@ -19,8 +19,8 @@ const MovieList = props => {
         });
     }
     
-    getMovies();
-  }, [movies]);
+    return getMovies();
+  }, []);
   
   return (
     <div className="movie-list">
@@ -35,8 +35,8 @@ const MovieList = props => {
 function MovieDetails( {movie}) {
   const {id}=movie;
   return (
-    <Link to={`/movies/${id}`}>
-        <MovieCard movie={movie} />
+    <Link to={`/movies/${id}`} >
+      <MovieCard movie={movie} />
     </Link>
    
   );

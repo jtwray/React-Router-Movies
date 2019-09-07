@@ -6,24 +6,45 @@ import SavedList from './Movies/SavedList';
 
 
 const App=() => {
+
+
   const [savedList, setSavedList]=useState( [] );
 
+
   const addToSavedList=movie => {
-    ( !savedList.includes( movie ) )?
-      ( setSavedList( [...savedList, movie] )):( setSavedList( savedList ) ) ;
+    const movieExists=savedList.find( savedListMovie => savedListMovie.id===movie.id )
+
+    if( movieExists ) {return alert( "movie already exists" )}
+
+    setSavedList( [...savedList, movie] )
+
   };
+
+  const removeFromSavedList=movie => {
+    setSavedList( savedList.filter( children => !children==movie ) );
+    // let saveButton=document.querySelector( 'div.save-button' );
+    //  saveButton.style.display="";
+  }
 
   return (
     <div>
-      <SavedList list={savedList} />
+
+      <Route path="/movies/:movieID" render={( props ) => ( <>
+        <SavedList
+          {...props}
+          list={savedList}
+          removeFromSavedList={removeFromSavedList}
+        />
+        <Movie
+          {...props}
+          addToSavedList={addToSavedList}
+          removeFromSavedList={removeFromSavedList}
+          savedList={savedList}
+        /></>
+      )} />
       <div>
         <Route exact path="/" component={MovieList} />
-        <Route path="/movies/:movieID" render={( props ) => (
-          <Movie
-            {...props}
-            addToSavedList={addToSavedList}
-          />
-        )} />
+
       </div>
     </div>
   );
