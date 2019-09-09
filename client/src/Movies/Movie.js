@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {NavLink, Route, Link} from "react-router-dom";
 import MetaScore from "./MetaScore";
 import Director from "./Director";
+import Stars from "./Stars";
 import axios from 'axios';
 
 const Movie=( props ) => {
@@ -38,7 +39,7 @@ const Movie=( props ) => {
   const {title, director, metascore, stars}=movie;
   
   return (
-    <div className="save-wrapper">
+    <div className="save-wrapper" >
       <div className="movie-card">
         <h2>{title}</h2>
         <div className="movie-director">
@@ -52,8 +53,11 @@ const Movie=( props ) => {
           <NavLink to={`/movies/${movie.id}/Metascore`}>
             MetaScore
             </NavLink>
-          <NavLink to={`/movies/${movie.id}/director`}>
+          <NavLink to={`/movies/${movie.id}/Director`}>
             Director
+            </NavLink>
+          <NavLink to={`/movies/${movie.id}/Starring`}>
+            Starring
             </NavLink>
         </nav>
         <Route
@@ -62,14 +66,14 @@ const Movie=( props ) => {
             )
           } />
         <Route
-          path="/movies/:movieID/director" render={( props ) => {
+          path="/movies/:movieID/Director" render={( props ) => {
             return <Director movie={movie} {...props} />;
           }} />
-        {stars&&stars.map( star => (
-          <div key={star} className="movie-star">
-            {star}
-          </div>
-        ) )}
+        <Route
+          path="/movies/:movieID/Starring" render={( props ) => {
+            return <Stars movie={movie} {...props} />;
+          }} />
+        
       </div>
       {!props.savedList.includes( (movie))?<div className="save-button" onClick={() => saveMovie( movie )}>Save</div>:""}
     </div>

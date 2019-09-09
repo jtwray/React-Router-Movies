@@ -1,30 +1,44 @@
 import React from 'react';
+import {NavLink, Route, Link} from "react-router-dom";
+import MetaScore from "./MetaScore";
+import Director from "./Director";
+import Stars from "./Stars";
 
-const MovieCard=({movie,history},props) => {
-	const {title, director, metascore, stars}=movie;
-	const routeToShop=event => {
-		event.preventDefault();
-		console.log('starttimer',props,history,movie)
-		setTimeout((event)=>history.push('/movies/1'),5000)
-	}
+const MovieCard=( {movie} ) => {
+	const {title, director, metascore, stars, id}=movie;
+
 	return (
-		<div className="movie-card">
-		<h2>{title}</h2>
-		<div className="movie-director">
-		  Director: <em>{director}</em>
+		<div className="movie-card" key={id}>
+			<h2>{title}</h2>
+			<div className="movie-director">
+				Director: <em>{director}</em>
+			</div>
+			<nav>
+				<NavLink to={`/movies/${movie.id}/Metascore`}>
+					MetaScore
+			  </NavLink>
+				<NavLink to={`/movies/${movie.id}/Director`}>
+					Director
+			  </NavLink>
+				<NavLink to={`/movies/${movie.id}/Starring`}>
+					Starring
+			  </NavLink>
+			</nav>
+			<Route
+				path="/movies/:movieID/Metascore" render={( props ) =>
+					( <MetaScore movie={movie} {...props} />
+					)
+				} />
+			<Route
+				path="/movies/:movieID/Director" render={( props ) => {
+					return <Director movie={movie} {...props} />;
+				}} />
+			<Route
+				path="/movies/:movieID/Starring" render={( props ) => {
+					return <Stars movie={movie} {...props} />;
+				}} />
 		</div>
-		<div className="movie-metascore">
-		  Metascore: <strong>{metascore}</strong>
-		</div>
-		<h3 >Actors</h3>
- 
-		{stars.map(star => (
-		  <div key={star} className="movie-star">
-			{star}
-		  </div>
-		))}
-	  </div>
-  )
+	)
 };
 
 export default MovieCard;
