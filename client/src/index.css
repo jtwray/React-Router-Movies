@@ -4,7 +4,9 @@ body {
   font-family: sans-serif;
   background-color: #f2f2f2;
 }
-
+h2{
+  margin-bottom: 0;
+}
 .movie-card {
   background-color: #fff;
   border: 0;
@@ -17,7 +19,7 @@ body {
 }
 
 .movie-director {
-  padding: 4px 0;
+  padding: 4px 0 4px 1em;
   font-size: 0.8rem;
 }
 
