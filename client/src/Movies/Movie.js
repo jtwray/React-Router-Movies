@@ -5,6 +5,7 @@ import Director from './Director';
 import Form from './Form';
 import Stars from './Stars';
 import axios from 'axios';
+import {Review} from './Review';
 
 const Movie=props => {
 	const initialState=[{title: "", comment: ""},]
@@ -50,13 +51,14 @@ const Movie=props => {
 				<h3> Actors </h3>
 				<nav>
 					<NavLink to={`/movies/${movie.id}/Metascore`}>MetaScore</NavLink>
-					<NavLink to={`/movies/${movie.id}/Director`}>Director </NavLink>
+				<NavLink to={`/movies/${movie.id}/Director`}>Director </NavLink>
 					<NavLink to={`/movies/${movie.id}/Starring`}>Starring </NavLink>
 				</nav>
 				<Route path="/movies/:movieID/Metascore" render={props => <MetaScore movie={movie} {...props} />} />
 				<Route path="/movies/:movieID/Director" render={props => <Director movie={movie} {...props} />} />
 				<Route path="/movies/:movieID/Starring" render={props => <Stars movie={movie} {...props} />} />
 				<Form reviews={reviews} setReviews={setReviews}/>
+				<Review reviews={reviews}/>
 			</div>
 			{!props.savedList.includes( movie )? (
 				<div className="save-button" onClick={() => saveMovie( movie )}>
