@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Link,Route} from "react-router-dom";
-import axios from 'axios';
+import Axios from "Axios";
 import MovieCard from './MovieCard';
 import MovieDetails from './MovieDetails';
 
@@ -10,16 +10,12 @@ const MovieList = props => {
   const [movies, setMovies] = useState([])
   useEffect(() => {
     const getMovies = () => {
-      axios
+      Axios
         .get('http://localhost:5000/api/movies')
-        .then(response => {
-          setMovies(response.data);
-        })
-        .catch(error => {
-          console.error('Server Error', error);
-        });
+        .then(response => setMovies(response.data))
+        .catch(error => console.error('Server Error', error));
     }
-    
+  
     return getMovies();
   }, []);
   

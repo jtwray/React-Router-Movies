@@ -14,6 +14,7 @@ const movies = [
 		director: 'Francis Ford Coppola',
 		metascore: 100,
 		stars: ['Marlon Brando', 'Al Pacino', 'Robert Duvall'],
+		reviews:[{review:"", title:"" ,id:""}]
 	},
 	{
 		id: 1,

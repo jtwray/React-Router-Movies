@@ -24,21 +24,12 @@ const App=() => {
   return (
 
     <>
-      <SavedList
-        removeFromSavedList={removeFromSavedList}
-        savedList={savedList}
-      />
+      <SavedList removeFromSavedList={removeFromSavedList}savedList={savedList}/>
       <Route exact path="/" component={MovieList} />
 
 
 
-      <Route path="/movies/:movieID" render={props =>
-        <Movie
-          addToSavedList={addToSavedList}
-          savedList={savedList}
-          {...props}
-        />}
-      />
+      <Route path="/movies/:movieID" render={props => <Movie addToSavedList={addToSavedList} savedList={savedList}{...props}/>}/>
 
     </>
   );
